@@ -7,7 +7,7 @@ def main(mode,message):
     if mode == 'encrypt':
         for letra in message:
             if not letra.isalnum() and letra not in [" ","!","?","."]:
-                return "Error, caracter invalido "+letra
+                return "Error, caracter invalido: '"+letra+"'"
         #Encripta message a encrypted_file       
         pubKeyFilename = 'test_publica.txt'
         encryptedText = encryptAndWriteToFile(filename, pubKeyFilename, message)
