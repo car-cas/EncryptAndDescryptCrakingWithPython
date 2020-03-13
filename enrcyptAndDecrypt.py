@@ -6,7 +6,7 @@ def main(mode,message):
 
     if mode == 'encrypt':
         for letra in message:
-            if not letra.isalnum() or letra not in [" ","!","?","."]:
+            if not letra.isalnum() and letra not in [" ","!","?","."]:
                 return "Error, caracter invalido "+letra
         #Encripta message a encrypted_file       
         pubKeyFilename = 'test_publica.txt'
@@ -71,12 +71,11 @@ def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=None)
     for i in range(len(encryptedBlocks)):
         encryptedBlocks[i] = str(encryptedBlocks[i])
     encryptedContent = ','.join(encryptedBlocks)
-    aux=encryptedContent
     encryptedContent = '%s_%s_%s' % (len(message), blockSize, encryptedContent)
     fo = open(messageFilename, 'w')
     fo.write(encryptedContent)
     fo.close()  
-    return aux 
+    return encryptedContent
 
 
 def readFromFileAndDecrypt(message, keyFilename):
