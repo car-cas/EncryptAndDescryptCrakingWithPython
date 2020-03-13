@@ -24,7 +24,7 @@ def getBlocksFromText(message, blockSize):
     #Convierte un string a una lista de bloques
     for character in message:
         if character not in SYMBOLS:
-            return ""
+            return "Error, simbolo ",character,"no reconocido"
     blockInts = []
     for blockStart in range(0, len(message), blockSize):
         #Calculamos el bloque para el bloque de texto
@@ -68,12 +68,12 @@ def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=None)
     for i in range(len(encryptedBlocks)):
         encryptedBlocks[i] = str(encryptedBlocks[i])
     encryptedContent = ','.join(encryptedBlocks)
-   
+    aux=encryptedContent
     encryptedContent = '%s_%s_%s' % (len(message), blockSize, encryptedContent)
     fo = open(messageFilename, 'w')
     fo.write(encryptedContent)
     fo.close()  
-    return encryptedContent
+    return aux 
 
 
 def readFromFileAndDecrypt(message, keyFilename):
