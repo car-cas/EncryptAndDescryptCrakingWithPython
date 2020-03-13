@@ -5,6 +5,9 @@ def main(mode,message):
     filename = 'encrypted_file.txt'    
 
     if mode == 'encrypt':
+        for letra in message:
+            if not letra.isalnum() or letra not in [" ","!","?","."]:
+                return "Error, caracter invalido "+letra
         #Encripta message a encrypted_file       
         pubKeyFilename = 'test_publica.txt'
         encryptedText = encryptAndWriteToFile(filename, pubKeyFilename, message)
@@ -24,7 +27,7 @@ def getBlocksFromText(message, blockSize):
     #Convierte un string a una lista de bloques
     for character in message:
         if character not in SYMBOLS:
-            return "Error, simbolo ",character,"no reconocido"
+            return ""
     blockInts = []
     for blockStart in range(0, len(message), blockSize):
         #Calculamos el bloque para el bloque de texto
