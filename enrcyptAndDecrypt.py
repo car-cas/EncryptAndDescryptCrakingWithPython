@@ -15,6 +15,8 @@ def main(mode,message):
         return encryptedText
 
     elif mode == 'decrypt':
+        if message.count("_") != 2:
+            return "Formato no valido."
         privKeyFilename = 'test_privada.txt'
         decryptedText = readFromFileAndDecrypt(message, privKeyFilename)
 
